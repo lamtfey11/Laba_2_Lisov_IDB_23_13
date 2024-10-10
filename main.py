@@ -23,6 +23,7 @@ win.iconphoto(False, photo)
 #цвет фона
 win.config(bg='#FFC0CB')
 
+'''
 #первый лайбл
 label_1 = tk.Label(win, text = 'Hello!',
                    bg='#DB7093',#цвет фона текста
@@ -39,6 +40,46 @@ label_1 = tk.Label(win, text = 'Hello!',
                    )
 #вызов первого лайбл
 label_1.pack()
+'''
+#бета-функции
+def print_X():
+    label_X = tk.Label(win, text='X')
+    label_X.pack()
+
+def print_O():
+    label_O = tk.Label(win, text='O')
+    label_O.pack()
+
+def print_count():
+    global count
+    count+=1
+    button_4['text'] = f'Count: {count}'
+
+#переменная для print_count
+count = 0
+
+#обратимся к классу баттон из библиотеки и создадим кнопки
+button_1 = tk.Button(win, text='X',
+                     command=print_X    #вызов функции
+                     )
+button_1.pack()
+
+button_2 = tk.Button(win, text='O',
+                     command=print_O    #вызов функции
+                     )
+button_2.pack()
+
+button_3 = tk.Button(win, text='Game',
+                     command= lambda: tk.Label(win, text='Game').pack()   #вызов ляьда-функции без def
+                     )
+button_3.pack()
+
+button_4 = tk.Button(win, text=f'Count: {count}',
+                    command=print_count,
+                    activebackground='blue',    #при нажатии менят цвет
+                    bg='red'
+                    )
+button_4.pack()
 
 #показать окно
 win.mainloop()
