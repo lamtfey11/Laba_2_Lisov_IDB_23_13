@@ -84,6 +84,7 @@ button_4 = tk.Button(win, text=f'Count: {count}',
 button_4.pack()
 '''
 
+'''
 button_0_1 = tk.Button(win, text='X')
 button_0_2 = tk.Button(win, text='O')
 button_0_3 = tk.Button(win, text='Game')
@@ -92,5 +93,31 @@ button_0_3 = tk.Button(win, text='Game')
 button_0_1.grid(row=0, column=0)
 button_0_2.grid(row=0, column=1)
 button_0_3.grid(row=1, column=0, columnspan=2, stick='we')#типа заполнит лево и право
+'''
+
+"""def get_entry():
+    value = name.get()
+    if value:
+        print(value)
+    else:
+        print('not Entry')
+
+def delete_entry():
+    name.delete(0)
+
+
+label_1_0 = tk.Label(win, text='имя: ', bg='pink').grid(row=0, column=0, stick='w')
+name = tk.Entry(win)
+name.grid(row=0, column=1)
+tk.Button(win, text='get', command=get_entry).grid(row=1, column=0, stick='we')
+tk.Button(win, text='delete', command=delete_entry).grid(row=1, column=1, stick='we')
+tk.Button(win, text='insert', command=lambda: name.insert(0, 'YES')).grid(row=2, column=0, columnspan=2, stick='we')
+
+
+win.grid_columnconfigure(0, minsize=100)
+win.grid_columnconfigure(1, minsize=100)
+"""
+
+
 #показать окно
 win.mainloop()
