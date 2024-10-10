@@ -41,6 +41,8 @@ label_1 = tk.Label(win, text = 'Hello!',
 #вызов первого лайбл
 label_1.pack()
 '''
+
+'''
 #бета-функции
 def print_X():
     label_X = tk.Label(win, text='X')
@@ -80,6 +82,15 @@ button_4 = tk.Button(win, text=f'Count: {count}',
                     bg='red'
                     )
 button_4.pack()
+'''
 
+button_0_1 = tk.Button(win, text='X')
+button_0_2 = tk.Button(win, text='O')
+button_0_3 = tk.Button(win, text='Game')
+
+#расположение кнопок по grid типа матрицы
+button_0_1.grid(row=0, column=0)
+button_0_2.grid(row=0, column=1)
+button_0_3.grid(row=1, column=0, columnspan=2, stick='we')#типа заполнит лево и право
 #показать окно
 win.mainloop()
