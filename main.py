@@ -117,7 +117,28 @@ tk.Button(win, text='insert', command=lambda: name.insert(0, 'YES')).grid(row=2,
 win.grid_columnconfigure(0, minsize=100)
 win.grid_columnconfigure(1, minsize=100)
 """
+'''
+def select_level():
+    level = level_var.get()
+    s = f'У вас {level}'
+    level_text.set(s)
 
+#привязали к однрй переменной все кнопки
+level_var = tk.IntVar()
+
+#переменная, куда сохраняется текст относительно выбора уровня
+level_text = tk.StringVar()
+
+tk.Label(win, text='Выбирите уровень сложности').pack()
+
+#создание кнопок
+tk.Radiobutton(win, text='1', variable=level_var, value=1, command=select_level).pack()
+tk.Radiobutton(win, text='2', variable=level_var, value=2, command=select_level).pack()
+tk.Radiobutton(win, text='3', variable=level_var, value=3, command=select_level).pack()
+
+#объект 
+tk.Label(win, textvariable=level_text).pack()
+'''
 
 #показать окно
 win.mainloop()
