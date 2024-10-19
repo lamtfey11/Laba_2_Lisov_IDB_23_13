@@ -1,5 +1,5 @@
 from tkinter import *
-import random
+
 
 def win_check(x):
     global game
@@ -12,103 +12,68 @@ def win_check(x):
         return 3
     else:
         return 0
-    
 
-def puch(x, status):
-    global game, turn, game_list
-    if status == '2':
-        if turn % 2 == 0:
-            game[x] = 'X'
-            button[x].config(text = 'X', state = 'disabled')
-            turn += 1
-        elif turn % 2 != 0:
-            game[x] = 'O'
-            button[x].config(text = 'O', state = 'disabled')
-            turn += 1
-            
-        if win_check(x) == 1:
-            label['text'] = 'Победа Х'
-            for i in range(9):
-                button[i].config(state='disabled')
-        elif win_check(x) == 2:
-            label['text'] = 'Победа О'
-            for i in range(9):
-                button[i].config(state='disabled')
-        elif win_check(x) == 3:
-            label['text'] = 'Ничья'
-            for i in range(9):
-                button[i].config(state='disabled')
-    """else:
-        if turn == 0:
-            game[x] = 'X'
-            button[x].config(text = 'X', state = 'disabled')
-            turn += 1
-            game_list.ramove(x)
-            t = random.choice(game_list)
-            if game[4] == 'X':
-                game[t] = 'O'
-            else:
-                game[4] = 'O'
-            button[t].config(text = 'O', state = 'disabled')
-            game_list.ramove(t)
-            turn += 1
-        else:
-            game[x] = 'X'
-            button[x].config(text = 'X', state = 'disabled')
-            turn += 1
-            game_list.ramove(x)
-            t = random.choice(game_list)
-            button[t].config(text = 'O', state = 'disabled')
-            game_list.ramove(t)
-            turn += 1
 
-        if win_check(x) == 1:
-            label['text'] = 'Победа Х'
-            for i in range(9):
-                button[i].config(state='disabled')
-        elif win_check(x) == 2:
-            label['text'] = 'Победа О'
-            for i in range(9):
-                button[i].config(state='disabled')
-        elif win_check(x) == 3:
-            label['text'] = 'Ничья'
-            for i in range(9):
-                button[i].config(state='disabled')"""
-                
+def puch(x):
+    global game, turn
+    if turn % 2 == 0:
+        game[x] = 'X'
+        button[x].config(text = 'X', state = 'disabled')
+        turn += 1
+    elif turn % 2 != 0:
+        game[x] = 'O'
+        button[x].config(text = 'O', state = 'disabled')
+        turn += 1
 
- 
-def newGame(s):
+    if win_check(x) == 1:
+        label['text'] = 'Победа Х'
+        for i in range(9):
+            button[i].config(state='disabled')
+    elif win_check(x) == 2:
+        label['text'] = 'Победа О'
+        for i in range(9):
+            button[i].config(state='disabled')
+    elif win_check(x) == 3:
+        label['text'] = 'Ничья'
+        for i in range(9):
+            button[i].config(state='disabled')
+
+def newGame():
     global game
     global turn 
-    global button
-    global status
-    global game_list 
-
-    status = s
-
     game = [None] * 9
-    game_list = list(range(9))
     turn = 0
-
-    label['text'] = 'Крестики-нолики'
-    button[0].config(text = '', state = 'active')
-    button[1].config(text = '',  state = 'active')
-    button[2].config(text = '',  state = 'active')
-    button[3].config(text = '', state = 'active')
-    button[4].config(text = '', state = 'active')
-    button[5].config(text = '', state = 'active')
-    button[6].config(text = '',  state = 'active')
-    button[7].config(text = '', state = 'active')
-    button[8].config(text = '',  state = 'active')
-        
-
+    row = 1
+    col = 0
+    for i in range(9):
+        if i == 0:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 1:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 2:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 3:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 4:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 5:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 6:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 7:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        elif i == 8:
+            button[i].config(text = '', bg = 'white', state = 'active')
+        col += 1    
+        if col == 3:
+            row += 1
+            col = 0
 def Exit():
     root.quit()      
 
 game = [None] * 9
-game_list = list(range(9))
 turn = 0
-status = '2'
+
 
 root = Tk()
 #длина и ширина и расположение
@@ -119,9 +84,8 @@ root.resizable(True, True)
 #root.minsize(300, 150)
 root.maxsize(600, 450)
 
-
 label = Label(width=20, text = 'Крестики-нолики')
-button = [Button(width=4, height=2, font=('Arial', 25, 'bold'), bg="white", command=lambda x=i: puch(x, status)) for i in range(9)]
+button = [Button(width=4, height=2, font=('Arial', 25, 'bold'), bg="white", command=lambda x=i: puch(x)) for i in range(9)]
 label.grid(row=0, column=0, columnspan=3)
 
 
@@ -138,7 +102,6 @@ Grid.rowconfigure(root, 2, weight=1)
 Grid.columnconfigure(root, 2, weight=1)
 Grid.rowconfigure(root, 3, weight=1)
 Grid.columnconfigure(root, 3, weight=1)
-
 for i in range(9):
     if i == 0:
         button[i].grid(row=row, column=col, sticky="NSEW")
@@ -163,20 +126,15 @@ for i in range(9):
         row += 1
         col = 0
      
-
 #убирает пунктир
 root.option_add("*tearOff", False)
 
 #Game
 main_menu = Menu()#под Game
 Game_menu = Menu()
-s_1 = '1'
-s_2 = '2'
 
-Game_menu.add_command(label="New Game One", command=newGame(s_1))
-Game_menu.add_command(label="New Game Two", command=newGame(s_2))
 Game_menu.add_command(label="Exit", command=Exit)
-
+Game_menu.add_command(label="New Game", command=newGame)
 #сама надпись Game
 main_menu.add_cascade(label="Game", menu=Game_menu)
 root.config(menu=main_menu)
