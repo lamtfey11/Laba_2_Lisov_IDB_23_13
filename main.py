@@ -1,6 +1,7 @@
 from tkinter import *
 
 
+
 def win_check(x):
     global game
     global turn
@@ -38,7 +39,41 @@ def puch(x):
         for i in range(9):
             button[i].config(state='disabled')
  
-        
+def newGame():
+    global game
+    global turn 
+
+    game = [None] * 9
+    turn = 0
+    row = 1
+    col = 0
+
+    for i in range(9):
+        if i == 0:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 1:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 2:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 3:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 4:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 5:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 6:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 7:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        elif i == 8:
+            button[i].config(text = 'O', bg = 'white', state = 'active')
+        col += 1    
+        if col == 3:
+            row += 1
+            col = 0
+
+def Exit():
+    root.quit()      
 
 game = [None] * 9
 turn = 0
@@ -46,11 +81,11 @@ turn = 0
 
 root = Tk()
 #длина и ширина и расположение
-root.geometry('400x300+500+200')
+root.geometry('270x340+500+200')
 #разрешение на изменение окна
-root.resizable(True, False)
+root.resizable(True, True)
 #максимальные и минимальные значения размеров окна
-root.minsize(300, 150)
+#root.minsize(300, 150)
 root.maxsize(600, 450)
 
 label = Label(width=20, text = 'Крестики-нолики')
@@ -62,13 +97,52 @@ label.grid(row=0, column=0, columnspan=3)
 row = 1
 col = 0
 
+# Настройка веса столбцов
+Grid.rowconfigure(root, 0, weight=1)
+Grid.columnconfigure(root, 0, weight=1)
+Grid.rowconfigure(root, 1, weight=1)
+Grid.columnconfigure(root, 1, weight=1)
+Grid.rowconfigure(root, 2, weight=1)
+Grid.columnconfigure(root, 2, weight=1)
+Grid.rowconfigure(root, 3, weight=1)
+Grid.columnconfigure(root, 3, weight=1)
+
 for i in range(9):
-    button[i].grid(row=row, column=col)
+    if i == 0:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 1:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 2:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 3:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 4:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 5:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 6:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 7:
+        button[i].grid(row=row, column=col, sticky="NSEW")
+    elif i == 8:
+        button[i].grid(row=row, column=col, sticky="NSEW")
     col += 1    
     if col == 3:
         row += 1
         col = 0
+     
 
+#убирает пунктир
+root.option_add("*tearOff", False)
 
+#Game
+main_menu = Menu()#под Game
+Game_menu = Menu()
+
+Game_menu.add_command(label="Exit", command=Exit)
+Game_menu.add_command(label="New Game", command=newGame)
+#сама надпись Game
+main_menu.add_cascade(label="Game", menu=Game_menu)
+root.config(menu=main_menu)
 
 root.mainloop()
